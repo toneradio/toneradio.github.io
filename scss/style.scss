@@ -1,0 +1,379 @@
+// Time to import some fonts.
+
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+// And let's set up the colors here.
+// Colours are official Tone Radio colours as specified in the style guide.
+
+$playerhead: #034e61; // Official Tone Radio Blue
+$playerbottom: #3db5d0; // Official Tone Radio Bright
+$playerbutton: #80a6af; // Official Tone Radio Light 
+$playerhighlight: #0b8dd9; // for progress bars
+
+  // These colours are for the footer
+$linkgrey: #808080;
+$linkhovergrey: #B5B5B5;
+
+  // These colours are for the nav bar
+$dark: #00232c; // Tone Radio Blue, Dark
+$light: #efefef;
+$white: #efefef;
+$black: #1a1b18;
+$color1: #034e61; // Tone Radio Blue
+$color2: #DE541E;
+
+a {
+     color: $linkgrey;
+     text-decoration:none;
+      &:hover {
+      color:$linkhovergrey;
+      }
+   }
+
+// and the basics for the rest of the page...
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  font-size: 100%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+
+// This is the nav style
+
+@mixin position($pos: relative, $top: null, $right: null, $bottom: null, $left: null) {
+	/*POSITION*/
+	position: $pos;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+}
+
+.mainNav {
+	background: $light;
+	color: $black;
+	max-height: 100px;
+	position: relative;
+  z-index: 9999;
+
+	a {
+		text-decoration: none;
+	}
+
+	.logo {
+		display: inline-block;
+		color: #fff;
+		font-size: 1.7em;
+		height: 40px;
+		line-height: 1.55em;
+		letter-spacing: -1px;
+		padding: 0 12px;
+		z-index: 0;
+
+		@include position;
+
+		&:hover:before {
+			background: $dark;
+		}
+
+		&:before {
+			content: "";
+			background: $color1;
+			z-index: -1;
+
+			@include position(absolute, 0, 0, 0, 0);
+		}
+
+		a {
+			color: $white;
+		}
+	}
+
+	.menu {
+		background: $light;
+		box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+		border-top: 1px solid ($light / 1.1);
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+
+		@include position(absolute, 60px, 0, null, 0);
+
+		a {
+			color: $dark;
+			border-bottom: 1px solid ($light / 1.1);
+			font-weight: bold;
+			display: block;
+			padding: 15px;
+
+			&:hover {
+				background: $dark;
+				color: $white;
+			}
+		}
+	}
+
+	.navBars {
+		display: inline-block;
+		font-size: 1.7em;
+		line-height: 1.5em;
+		float: right;
+
+		/*USER SELECTION*/
+		user-select: none;
+		-webkit-user-select: none;
+	}
+}
+
+#xBxHack {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: -99999px;
+
+	&:checked ~ nav .menu {
+		display: block;
+	}
+}
+
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+@media screen and (min-width: 600px) {
+	.mainNav {
+		overflow: hidden;
+		.navBars {
+			display: none;
+		}
+
+		.container {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+
+		.logo {
+			margin: 10px 0;
+		}
+
+		.menu {
+			display: block;
+			box-shadow: none;
+			border: none;
+			float: right;
+
+			@include position(static);
+
+			li {
+				display: inline-block;
+			}
+
+			a {
+				border: none;
+				padding: 20px 10px;
+			}
+		}
+	}
+}
+
+// This is the style for the player.
+
+.player {
+	background-color: $playerhead;
+	width: 605px;
+	height: 180px;
+	margin: 150px auto;
+	color: #fff;
+	position: relative;
+	padding-top: 30px;
+}
+.btn__play {
+	width: 87px;
+	height: 87px;
+	display: block;
+	margin: -10px 21px 0;
+	float: left;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	position: relative;
+	cursor: pointer;
+}
+.btn__play__arrow {
+	width: 0; 
+	height: 0; 
+	border-top: 20px solid transparent;
+	border-bottom: 20px solid transparent;
+	border-left: 30px solid #fff;
+	position: absolute;
+	top: 20px;
+	left: 30px;
+}
+.btn__play__pause {
+	position: absolute;
+	width: 30%;
+	height: 50%;
+	border-left: 8px solid #fff;
+	border-right: 8px solid #fff;
+	top: 20px;
+	left: 30px;
+	display: none;
+}
+.btn__play:hover {
+	border-color: $playerbutton;
+}
+.btn__play:hover>.btn__play__arrow {
+	border-left-color: $playerbutton;
+}
+.btn__play:hover>.btn__play__pause {
+	border-left-color: $playerbutton;
+	border-right-color: $playerbutton;
+}
+.player__footer {
+	background: $playerbottom;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 45px;
+	padding: 12px 20px;
+	font-size: 15px;
+}
+.player h3 {
+	font-size: 23px;
+}
+.player p {
+	width: 90%;
+	font-size: 14px;
+}
+.player__timeline,
+.player__volume__bar {
+	height: 10px;
+	position: relative;
+	background: rgba(255,255,255,.5);
+	display: inline-block;
+	cursor: pointer;
+}
+
+.btn__volume {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+	display: block;
+	position: absolute;
+	top: 12px;
+	left: 460px;
+	cursor: pointer;
+}
+.player__volume__progress,
+.player__timeline__progress {
+	background-color: $playerhighlight;
+	height: 100%;
+	display: block;
+}
+.player__volume__progress {
+	width: 70%;
+}
+.player__volume__progress:hover,
+.player__timeline__progress:hover {
+	background-color: $playerhighlight;
+}
+.player__volume__bar {
+	width: 80px;
+	margin-left: 475px;
+}
+
+
+// This is the #nowplaying style
+
+$timing: .6s;
+$ease: ease-in;
+
+.recent-track {
+	font-size: 100%;
+	color: white;
+	display: flex;
+	align-items: center;
+	&__body {
+		display: inline-block;
+		padding-left: 2rem;
+	}
+	
+	&__name,
+	&__artist,
+	&__album {
+		display: inline;
+	}
+	
+	&__icon {
+		width: 18px;
+		height: 14px;
+		display: flex;
+		justify-content: space-between;
+		span {
+			height: 100%;
+			width: 3px;
+			background: white;
+			transform-origin: bottom;
+			&:nth-child(1) {
+				animation: sound1 $timing infinite $ease;
+			}
+			&:nth-child(2) {
+				animation: sound2 $timing infinite $ease;
+			}
+			&:nth-child(3) {
+				animation: sound3 $timing infinite $ease;
+			}
+			&:nth-child(4) {
+				animation: sound4 $timing infinite $ease;
+			}
+		}
+	}
+}
+
+@keyframes sound1 {
+	20% {
+		transform: scaleY(.5);
+	}
+}
+
+@keyframes sound2 {
+	40% {
+		transform: scaleY(.5);
+	}
+}
+
+@keyframes sound3 {
+	60% {
+		transform: scaleY(.5);
+	}
+}
+
+@keyframes sound4 {
+	80% {
+		transform: scaleY(.5);
+	}
+}
+
+// This is the style for the footer.
+
+.contact {
+  font-size: 70%;
+  margin-bottom: 2em;
+  line-height: 220%;
+  text-align: center;
+  color: $linkgrey;
+}
+
+.footer {
+  font-size: 120%;
+  text-align: center;
+  color: $linkgrey;
+  }

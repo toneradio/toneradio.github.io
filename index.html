@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Tone Radio / University of Gloucestershire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <input type="checkbox" id="xBxHack" />
+<nav id="mainNav" class="mainNav">
+	<div class="container">
+		<div class="logo"><a href="/"><strong>tone</strong>radio</a></div>
+    <label class="navBars" for="xBxHack">
+			<i class="fa fa-bars"></i>
+		</label>
+		<ul id="menu" class="menu">
+			<li><a href="/">Home</a></li>
+			<li><a href="https://www.yourstudentsunion.com/societies/toneradio/">About</a></li>
+			<li><a href="mailto:manager@toneradio.co.uk,music@toneradio.co.uk">Contact</a></li>
+		</ul>
+	</div>
+</nav>
+
+<div class="player">
+		<audio id="audio" src="http://138.68.139.43:8000/stream" type="audio/mpeg">"></audio>
+		<i class="btn__play">
+			<i class="btn__play__arrow"></i>
+			<i class="btn__play__pause"></i>
+		</i>
+		<h3></h3>
+		<p>We're updating our website - but you can still listen to your student radio station right here! <b>Turn up. Tune in. Tone.</b></p><br>
+  <div class="recent-track">
+	<div class="recent-track__icon">
+		<span></span>
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+	<div class="recent-track__body js-track">&nbsp;</div>
+</div>
+		<footer class="player__footer">
+			<span class="player__timeline__time--now">&nbsp;</span>
+			<span class="player__timeline">
+				<span class="player__timeline__progress"></span>
+			</span>
+      
+			<span class="player__timeline__time--end">&nbsp;</span>
+			<span class="player__volume">
+				<i class="fa fa-volume-up btn__volume"></i>
+				<span class="player__volume__bar">
+					<span class="player__volume__progress"></span>
+				</span>
+			</span>
+		</footer>
+	</div>
+
+<div class="footer">
+  <div class="contact">Listening on mobile? <a href="#">Try TuneIn.</a></div>
+  <a href="https://twitter.com/toneradio"><i class="fa fa-twitter" aria-hidden="true"></i></a> &nbsp;//&nbsp;
+  <a href="https://facebook.com/toneradio"><i class="fa fa-facebook" aria-hidden="true"></i></a> &nbsp;//&nbsp;
+  <a href="https://instagram.com/toneradio"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+  </div>
+  
+<script src="/js/nowplaying.js"></script>
+<script src="/js/player.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script src="/js/nav.js"></script>
+
+</body>
+</html>
